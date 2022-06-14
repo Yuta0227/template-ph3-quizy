@@ -20,6 +20,5 @@ Route::get('/', function () {
 Route::get('quiz_list', function () {
     return view('quiz.quiz_list');
 })->name('quiz.quiz_list');
-// Route::get('quiz/{big_question_index?}', [QuizController::class, 'quiz_list']);
-Route::get('quiz/{big_question_index}', 'QuizController@quiz_list')->name('quiz.quiz');
+Route::get('quiz/{big_question_id}', 'QuizController@quiz_list')->name('quiz.quiz');
 
