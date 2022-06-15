@@ -11,7 +11,7 @@
 <a href="{{ route('quiz.question_list') }}">一覧に戻る</a>
 
 <body>
-    <h1>{{ $quiz_titles[0]->big_question_title }}</h1>
+    <h1>{{ $quiz_titles->big_question_title }}</h1>
     <div class="main">
         @foreach ($question_list as $question)
             <div class="quiz" id="question{{ $loop->iteration }}">
