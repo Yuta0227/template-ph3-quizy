@@ -8,7 +8,7 @@
         href="https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/html5resetcss/html5reset-1.6.css">
     <link rel="stylesheet" href="{{ asset('css/quiz.css') }}">
 </head>
-<a href="{{ route('quiz.quiz_list') }}">一覧に戻る</a>
+<a href="{{ route('quiz.question_list') }}">一覧に戻る</a>
 
 <body>
     <h1>{{ $quiz_titles[0]->big_question_title }}</h1>

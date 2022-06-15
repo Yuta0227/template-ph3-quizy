@@ -1,2 +1,3 @@
-<a href="{{ route('quiz.quiz',['big_question_id'=>1]) }}">東京</a>
-<a href="{{ route('quiz.quiz',['big_question_id'=>2]) }}">広島</a>
+@foreach($quiz_titles as $quiz_title)
+<a href="{{ route('quiz.quiz',['big_question_id'=>$loop->iteration]) }}">{{ $quiz_title->big_question_title }}</a><br>
+@endforeach

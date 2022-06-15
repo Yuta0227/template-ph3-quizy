@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
-    public function quiz_list(Request $request,$big_question_id)
+    public function question_list($big_question_id)
     {
         $quiz_titles=DB::select("select * from big_question_table where big_question_id=$big_question_id");
         $pictures=DB::select("select * from pictures where big_question_id=$big_question_id");
@@ -22,5 +22,9 @@ class QuizController extends Controller
         }
         $correct_answers=DB::select("select * from question_list where big_question_id=$big_question_id and valid=1");
         return view ('quiz.quiz',compact('question_list','big_question_id','quiz_titles','pictures','correct_answers'));
+    }
+    public function quiz_list(){
+        $quiz_titles=DB::table("big_question_table")->get();
+        return view('quiz.quiz_list',compact('quiz_titles'));
     }
 }
