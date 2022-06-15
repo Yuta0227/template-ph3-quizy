@@ -9,18 +9,6 @@ class QuizController extends Controller
 {
     public function quiz_list(Request $request,$big_question_id)
     {
-        // $question_list = [
-        //     1=>[
-        //         1=>['こうわ', 'たかなわ', 'たかわ'],
-        //         2=>['かめど', 'かめと', 'かめいど'],
-        //         3=>['こうじまち', 'おかとまち', 'かゆまち']
-        //     ],
-        //     2=>[
-        //         1=>['むこうひら', 'むかいなだ', 'むきひら'],
-        //         2=>['みよし', 'おしらべ', 'みつぎ'],
-        //         3=>['きやま', 'かなやま', 'ぎんざん']
-        //     ],
-        // ];
         $quiz_titles=DB::select("select * from big_question_table where big_question_id=$big_question_id");
         $pictures=DB::select("select * from pictures where big_question_id=$big_question_id");
         $quiz_length=count($pictures);
