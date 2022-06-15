@@ -1,4 +1,10 @@
 @extends('quiz.layout')
+@section('title')
+quizy
+@endsection
+@section('css')
+{{ asset('css/quiz.css') }}
+@endsection
 @section('go_back_to_list')
 <a href="{{ route('quiz.question_list') }}">一覧に戻る</a>
 @endsection
