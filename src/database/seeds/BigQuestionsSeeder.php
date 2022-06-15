@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class BigQuestionTableSeeder extends Seeder
+class BigQuestionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,6 +16,6 @@ class BigQuestionTableSeeder extends Seeder
             array('big_question_title'=>'東京の難読地名クイズ'),
             array('big_question_title'=>'広島県の難読地名クイズ')
         );
-        DB::table('big_question_table')->insert($data);
+        DB::table('big_questions')->insert($data);
     }
 }

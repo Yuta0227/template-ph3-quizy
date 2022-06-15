@@ -6,12 +6,12 @@ quizy
 {{ asset('css/quiz.css') }}
 @endsection
 @section('go_back_to_list')
-<a href="{{ route('quiz.question_list') }}">一覧に戻る</a>
+<a href="{{ route('quiz.question_lists') }}">一覧に戻る</a>
 @endsection
 @section('content')
     <h1>{{ $quiz_titles->big_question_title }}</h1>
     <div class="main">
-        @foreach ($question_list as $question)
+        @foreach ($question_lists as $question)
             <div class="quiz" id="question{{ $loop->iteration }}">
                 <h1>{{ $loop->iteration }}. この地名はなんて読む？</h1>
                 <img alt="{{ $correct_answers[$loop->iteration - 1]->choice_name }}の画像"

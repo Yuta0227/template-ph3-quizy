@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class QuestionListSeeder extends Seeder
+class QuestionListsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -32,6 +32,6 @@ class QuestionListSeeder extends Seeder
             array('big_question_id'=>2,'question_id'=>3,'choice_name'=>'かなやま','valid'=>0),
             array('big_question_id'=>2,'question_id'=>3,'choice_name'=>'ぎんざん','valid'=>1),
         );
-        DB::table('question_list')->insert($data);
+        DB::table('question_lists')->insert($data);
     }
 }

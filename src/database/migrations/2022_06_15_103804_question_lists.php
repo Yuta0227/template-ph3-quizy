@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class BigQuestionTable extends Migration
+class QuestionLists extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class BigQuestionTable extends Migration
      */
     public function up()
     {
-        //クイズのタイトル
-        Schema::create('big_question_table', function (Blueprint $table) {
-            $table->increments('big_question_id');
-            $table->string('big_question_title');
+        //質問一覧
+        Schema::create('question_lists', function (Blueprint $table) {
+            $table->integer('big_question_id');
+            $table->integer('question_id');
+            $table->string('choice_name');
+            $table->boolean('valid');
         });
     }
 
@@ -27,6 +29,6 @@ class BigQuestionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('big_question_table');
+        Schema::dropIfExists('question_lists');
     }
 }
