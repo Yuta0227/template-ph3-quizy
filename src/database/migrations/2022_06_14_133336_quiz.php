@@ -57,12 +57,12 @@ class Quiz extends Migration
             $table->string('picture_url');
         });
         $data=array(
-            array('big_question_id'=>1,'question_id'=>1,'picture_url'=>'takanawa.png'),
-            array('big_question_id'=>1,'question_id'=>2,'picture_url'=>'kameido.png'),
-            array('big_question_id'=>1,'question_id'=>3,'picture_url'=>'koujimachi.png'),
-            array('big_question_id'=>2,'question_id'=>1,'picture_url'=>'mukainada.png'),
-            array('big_question_id'=>2,'question_id'=>2,'picture_url'=>'oshirabe.png'),
-            array('big_question_id'=>2,'question_id'=>3,'picture_url'=>'ginzan.png'),
+            array('big_question_id'=>1,'question_id'=>1,'picture_url'=>'たかなわ.png'),
+            array('big_question_id'=>1,'question_id'=>2,'picture_url'=>'かめいど.png'),
+            array('big_question_id'=>1,'question_id'=>3,'picture_url'=>'こうじまち.png'),
+            array('big_question_id'=>2,'question_id'=>1,'picture_url'=>'むかいなだ.png'),
+            array('big_question_id'=>2,'question_id'=>2,'picture_url'=>'おしらべ.png'),
+            array('big_question_id'=>2,'question_id'=>3,'picture_url'=>'ぎんざん.png'),
         );
         DB::table('pictures')->insert($data);
     }

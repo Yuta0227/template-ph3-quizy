@@ -9,19 +9,13 @@
     <link rel="stylesheet" href="{{ asset('css/quiz.css') }}">
 </head>
 <a href="{{ route('quiz.quiz_list') }}">一覧</a>
-@php
-print_r('<pre>');
-var_dump($correct_answers);
-print_r('<pre>');
-@endphp
-
 <body>
     <h1>{{ $quiz_titles[0]->big_question_title }}</h1>
     <div class="main">
         @foreach ($question_list as $question)
             <div class="quiz">
                 <h1>{{ $loop->iteration }}. この地名はなんて読む？</h1>
-                <img src="img/{{ $loop->iteration }}.png">
+                <img alt="{{ $correct_answers[$loop->iteration-1]->choice_name }}の画像" src="{{ asset("img/".$pictures[$loop->iteration-1]->picture_url) }}">
                 <ul>
                     <li id="answerlist_{{ $loop->iteration }}_1" name="answerlist_{{ $loop->iteration }}"
                         class="answerlist" onclick="check({{ $loop->iteration }}, 1, 2)">{{ $question[0]->choice_name }}
@@ -44,3 +38,4 @@ print_r('<pre>');
 </body>
 
 </html>
+{{-- jsではcheck関数の引数をinnerhtmlと$correct_answers[$loop->iteration-1]->choice_nameにして一致するか否かで判定する --}}
