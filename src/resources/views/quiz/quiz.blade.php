@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="ja">
-
-<head>
-    <meta charset="UTF-8">
-    <title>quizy1</title>
-    <link
-        href="https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/html5resetcss/html5reset-1.6.css">
-    <link rel="stylesheet" href="{{ asset('css/quiz.css') }}">
-</head>
+@extends('quiz.layout')
+@section('go_back_to_list')
 <a href="{{ route('quiz.question_list') }}">一覧に戻る</a>
-
-<body>
+@endsection
+@section('content')
     <h1>{{ $quiz_titles->big_question_title }}</h1>
     <div class="main">
         @foreach ($question_list as $question)
@@ -47,8 +39,8 @@
                 </ul>
             </div>
         @endforeach
-        <script src="{{ asset('/js/quiz.js') }}"></script>
     </div>
-</body>
-
-</html>
+@endsection
+@section('script')
+<script src="{{ asset('/js/quiz.js') }}"></script>
+@endsection
