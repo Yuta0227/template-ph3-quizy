@@ -14,3 +14,4 @@ composer.json
 composer.lock
 /config/backup.php
 /resources/lang/vendor/backup/*
+/config/*
