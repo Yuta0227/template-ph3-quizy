@@ -25,7 +25,6 @@ RUN apt-get update && \
   composer config -g process-timeout 3600 && \
   composer config -g repos.packagist composer https://packagist.org
 
-
 COPY ./usr/local/etc/php/php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /work/backend
