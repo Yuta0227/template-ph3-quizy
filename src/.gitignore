@@ -15,4 +15,4 @@ composer.lock
 /config/backup.php
 /public/img/
 /resources/lang/
-..vendor/*
+../vendor/*
