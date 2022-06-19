@@ -1,5 +1,0 @@
-{
-    "require": {
-        "spatie/laravel-backup": "^8.1"
-    }
-}
