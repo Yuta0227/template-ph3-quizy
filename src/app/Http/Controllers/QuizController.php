@@ -9,7 +9,9 @@ class QuizController extends Controller
 {
     public function question_lists($big_question_id)
     {
-        $quiz_titles=DB::table('big_questions')->where('big_question_id',$big_question_id)->first();
+        // $quiz_titles=DB::table('big_questions')->where('big_question_id',$big_question_id)->first();
+        $callBigQuestion=app()->make('App\Http\Controllers\BigQuestionController');
+        $quiz_title=$callBigQuestion->title($big_question_id);
         $pictures=DB::table('pictures')->where('big_question_id',$big_question_id)->get();
         $quiz_length=count($pictures);
         $question_lists=[];
@@ -21,7 +23,7 @@ class QuizController extends Controller
             shuffle($question_lists[$question_id]);
         }
         $correct_answers=DB::table("question_lists")->where('big_question_id',$big_question_id)->where('valid',1)->get();
-        return view ('quiz.quiz',compact('question_lists','big_question_id','quiz_titles','pictures','correct_answers'));
+        return view ('quiz.quiz',compact('question_lists','quiz_title','big_question_id','pictures','correct_answers'));
     }
     // public function quiz_list(){
     //     $quiz_titles=DB::table('big_questions')->get();

@@ -8,8 +8,7 @@ use App\BigQuestion;
 class BigQuestionController extends Controller
 {
     public function title($big_question_id){
-        $quiz_title=BigQuestion::bigQuestionIdEqual($big_question_id)->first();
-        return view('quiz.quiz',compact('quiz_title'));
+        return BigQuestion::bigQuestionIdEqual($big_question_id)->first();
     }
     public function all_titles(){
         $quiz_titles=BigQuestion::all();

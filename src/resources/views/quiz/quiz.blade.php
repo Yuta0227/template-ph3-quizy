@@ -9,7 +9,7 @@ quizy
 <a href="{{ route('quiz.question_lists') }}">一覧に戻る</a>
 @endsection
 @section('content')
-    <h1>{{ $quiz_titles->big_question_title }}</h1>
+    <h1>{{ $quiz_title->getTitle() }}</h1>
     <div class="main">
         @foreach ($question_lists as $question)
             <div class="quiz" id="question{{ $loop->iteration }}">
