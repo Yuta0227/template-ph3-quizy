@@ -7,5 +7,5 @@ use App\Picture;
 
 class PictureController extends Controller
 {
-    //
+    
 }

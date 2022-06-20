@@ -25,12 +25,12 @@ class QuestionListsSeeder extends Seeder
             array('big_question_id'=>2,'question_id'=>1,'choice_name'=>'むきひら','valid'=>0),
             array('big_question_id'=>2,'question_id'=>1,'choice_name'=>'むこうひら','valid'=>0),
             array('big_question_id'=>2,'question_id'=>1,'choice_name'=>'むかいなだ','valid'=>1),
-            array('big_question_id'=>2,'question_id'=>2,'choice_name'=>'みつぎ','valid'=>0),
+            array('big_question_id'=>2,'question_id'=>2,'choice_name'=>'みつぎ','valid'=>1),
             array('big_question_id'=>2,'question_id'=>2,'choice_name'=>'みよし','valid'=>0),
-            array('big_question_id'=>2,'question_id'=>2,'choice_name'=>'おしらべ','valid'=>1),
+            array('big_question_id'=>2,'question_id'=>2,'choice_name'=>'おしらべ','valid'=>0),
             array('big_question_id'=>2,'question_id'=>3,'choice_name'=>'きやま','valid'=>0),
-            array('big_question_id'=>2,'question_id'=>3,'choice_name'=>'かなやま','valid'=>0),
-            array('big_question_id'=>2,'question_id'=>3,'choice_name'=>'ぎんざん','valid'=>1),
+            array('big_question_id'=>2,'question_id'=>3,'choice_name'=>'かなやま','valid'=>1),
+            array('big_question_id'=>2,'question_id'=>3,'choice_name'=>'ぎんざん','valid'=>0),
         );
         DB::table('question_lists')->insert($data);
     }
