@@ -23,8 +23,8 @@ class QuizController extends Controller
         $correct_answers=DB::table("question_lists")->where('big_question_id',$big_question_id)->where('valid',1)->get();
         return view ('quiz.quiz',compact('question_lists','big_question_id','quiz_titles','pictures','correct_answers'));
     }
-    public function quiz_list(){
-        $quiz_titles=DB::table('big_questions')->get();
-        return view('quiz.quiz_list',compact('quiz_titles'));
-    }
+    // public function quiz_list(){
+    //     $quiz_titles=DB::table('big_questions')->get();
+    //     return view('quiz.quiz_list',compact('quiz_titles'));
+    // }
 }

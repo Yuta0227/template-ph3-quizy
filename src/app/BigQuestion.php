@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BigQuestion extends Model
 {
-    public function getTitle(){
-        return $this->big_question_title;
+    public function scopeBigQuestionIdEqual($query,$big_question_id){
+        return $query->where('big_question_id',$big_question_id);
     }
 }
