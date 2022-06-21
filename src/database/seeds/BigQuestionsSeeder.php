@@ -13,8 +13,8 @@ class BigQuestionsSeeder extends Seeder
     public function run()
     {
         $data=array(
-            array('big_question_title'=>'東京の難読地名クイズ'),
-            array('big_question_title'=>'広島県の難読地名クイズ')
+            array('title'=>'東京の難読地名クイズ'),
+            array('title'=>'広島県の難読地名クイズ')
         );
         DB::table('big_questions')->insert($data);
     }

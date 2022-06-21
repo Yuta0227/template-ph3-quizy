@@ -15,8 +15,8 @@ class BigQuestions extends Migration
     {
         //クイズのタイトル
         Schema::create('big_questions', function (Blueprint $table) {
-            $table->increments('big_question_id');
-            $table->string('big_question_title');
+            $table->increments('id');
+            $table->string('title');
         });
     }
 
