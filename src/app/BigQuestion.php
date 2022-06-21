@@ -13,4 +13,7 @@ class BigQuestion extends Model
     public function pictures(){
         return $this->hasMany(Picture::class);
     }
+    public function choices(){
+        return $this->hasMany(QuestionList::class);
+    }
 }

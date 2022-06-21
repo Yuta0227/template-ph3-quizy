@@ -12,7 +12,7 @@ class QuizController extends Controller
     public function question_lists($big_question_id)
     {
         $quiz_title=BigQuestion::get_title($big_question_id)->big_question_title;
-        $pictures=BigQuestion::find($big_question_id)->pictures;
+        $pictures=BigQuestion::find($big_question_id)->pictures()->get();
         $call_question_list=app()->make('App\Http\Controllers\QuestionListController');
         $question_lists=$call_question_list->questions($big_question_id);
         $call_correct_answers=app()->make('App\Http\Controllers\QuestionListController');
