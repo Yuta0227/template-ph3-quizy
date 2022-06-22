@@ -12,7 +12,6 @@ class QuestionList extends Model
     public function scopeIsCorrect($query){
         return $query->where('valid',1);
     }
-
     public function scopeQuestionIdEqual($query,$question_id){
         return $query->where('question_id',$question_id);
     }
