@@ -10,7 +10,7 @@ class QuestionListController extends Controller
 {
     public function load_choices($big_question_id)
     {
-        return BigQuestion::with('choices')->find($big_question_id);
+        return BigQuestion::with('choices')->find($big_question_id)->choices;
     }
     public function questions($big_question_id)
     {
@@ -19,7 +19,7 @@ class QuestionListController extends Controller
         $choices = $this->load_choices($big_question_id);
         for ($question_id = 1; $question_id <= $quiz_length; $question_id++) {
             $before_shuffle = [];
-            $before_shuffle = $choices->choices->filter(function ($choice) use ($question_id) {
+            $before_shuffle = $choices->filter(function ($choice) use ($question_id) {
                 return $choice->question_id == $question_id;
             });
             $after_shuffle = $before_shuffle->shuffle();
@@ -29,12 +29,12 @@ class QuestionListController extends Controller
     }
     function quiz_length($big_question_id)
     {
-        return count($this->load_choices($big_question_id)->choices->unique('question_id'));
+        return count($this->load_choices($big_question_id)->unique('question_id'));
     }
     public function correct_answer($big_question_id)
     {
         $correct_answer_array = [];
-        $correct_answer = $this->load_choices($big_question_id)->choices
+        $correct_answer = $this->load_choices($big_question_id)
             ->filter(function ($choice) {
                 return $choice->valid == true;
             })->all();
