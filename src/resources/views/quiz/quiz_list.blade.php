@@ -1,3 +1,7 @@
+@extends('quiz.layout')
+@section('content')
 @foreach($quiz_titles as $quiz_title)
-<a href="{{ route('quiz.quiz',['big_question_id'=>$quiz_title->big_question_id]) }}">{{ $quiz_title->big_question_title }}</a><br>
+<a href="{{ route('quiz.quiz',['big_question_id'=>$quiz_title->id]) }}">{{ $quiz_title->title }}</a><br>
 @endforeach
+<a href="{{ route('quiz.login') }}">ログイン</a>
+@endsection
