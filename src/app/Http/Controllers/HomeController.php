@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\BigQuestion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user=Auth::user();
+        $quiz_titles=BigQuestion::all();
+        return view('home',compact('user','quiz_titles'));
+    }
+    public function edit_title(Request $request){
+        $big_question=BigQuestion::find($request->id);
+        $big_question->update(['title'=>$request->title]);
+        return redirect('/home');
     }
 }

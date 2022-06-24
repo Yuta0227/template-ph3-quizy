@@ -23,3 +23,4 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index');
+Route::post('/home','HomeController@edit_title');

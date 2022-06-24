@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class BigQuestion extends Model
 {
+    public $timestamps=false;
     protected $primaryKey='id';
+    protected $fillable=[
+        'title'
+    ];
     public static function get_title($big_question_id){
         return self::where('id',$big_question_id)->select('title')->first();
     }
@@ -16,4 +20,8 @@ class BigQuestion extends Model
     public function choices(){
         return $this->hasMany(QuestionList::class);
     }
+    public static $rules=array(
+        'id'=>'required',
+        'title'=>'required'
+    );
 }
