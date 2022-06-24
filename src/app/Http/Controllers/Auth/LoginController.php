@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -20,7 +21,8 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
+    protected $maxAttempts=2;//ログイン試行回数
+    protected $decayMinutes=3;//ログインロックタイム
     /**
      * Where to redirect users after login.
      *

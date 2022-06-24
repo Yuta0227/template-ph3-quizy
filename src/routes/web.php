@@ -13,10 +13,13 @@
 
 // use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/quiz_list', 'BigQuestionController@all_titles')->name('quiz.question_lists');
+Route::get('/quiz_list', 'BigQuestionController@index')->name('quiz.question_lists');
 Route::get('/quiz/{big_question_id}', 'QuizController@question_lists')->name('quiz.quiz');
-Route::get('/login','');
+Auth::routes();
+
+
+Route::get('/home', 'HomeController@index');
