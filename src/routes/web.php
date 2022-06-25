@@ -26,3 +26,4 @@ Route::get('/home', 'HomeController@index');
 Route::post('/edit_title','HomeController@edit_title');
 Route::post('/add_title','HomeController@add_title');
 Route::post('/delete_title','HomeController@delete_title');
+Route::post('/switch_titles','HomeController@switch_titles');

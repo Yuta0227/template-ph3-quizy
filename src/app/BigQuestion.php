@@ -9,7 +9,7 @@ class BigQuestion extends Model
     public $timestamps=false;
     protected $primaryKey='id';
     protected $fillable=[
-        'title'
+        'title','id'
     ];
     public static function get_title($big_question_id){
         return self::where('id',$big_question_id)->select('title')->first();
