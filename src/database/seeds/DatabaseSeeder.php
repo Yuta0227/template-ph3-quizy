@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PicturesSeeder::class);
         $this->call(BigQuestionsSeeder::class);
         $this->call(QuestionListsSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

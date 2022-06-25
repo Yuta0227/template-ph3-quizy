@@ -72,17 +72,18 @@ class HomeController extends Controller
         $new_to_big_question=new BigQuestion();
         $new_to_big_question->fill(['id'=>$save_from_big_question->id,'title'=>$save_to_big_question->title]);
         $new_to_big_question->save();
+        // dd($request->to_id.$request->from_id);
         foreach($save_from_questions as $from_question){
-            $from_question->update(['big_question_id'=>$request->to_id,'updated_at'=>date("Y-m-d H:i:s")]);
+            $from_question->update(['big_question_id'=>$request->to_id]);
         }
         foreach($save_to_questions as $to_question){
-            $to_question->update(['big_question_id'=>$request->from_id,'updated_at'=>date("Y-m-d H:i:s")]);
+            $to_question->update(['big_question_id'=>$request->from_id]);
         }
         foreach($save_from_pictures as $from_picture){
-            $from_picture->update(['big_question_id'=>$request->to_id,'updated_at'=>date("Y-m-d H:i:s")]);
+            $from_picture->update(['big_question_id'=>$request->to_id]);
         }
         foreach($save_to_pictures as $to_picture){
-            $to_picture->update(['big_question_id'=>$request->from_id,'updated_at'=>date("Y-m-d H:i:s")]);
+            $to_picture->update(['big_question_id'=>$request->from_id]);
         }
         return redirect('/home');
     }
