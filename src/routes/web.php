@@ -27,6 +27,9 @@ Route::post('/edit_title','HomeController@edit_title');
 Route::post('/add_title','HomeController@add_title');
 Route::post('/delete_title','HomeController@delete_title');
 Route::post('/switch_titles','HomeController@switch_titles');
+Route::post('/delete_choice/{big_question_id}','HomeController@delete_choice');
+Route::post('/edit_choice/{big_question_id}','HomeController@edit_choice');
+
 Route::post('/edit_title',function(){
     return view('/home');
 });
@@ -37,6 +40,12 @@ Route::post('/delete_title',function(){
     return view('/home');
 });
 Route::post('/switch_title',function(){
+    return view('/home');
+});
+Route::get('/delete_choice/{big_question_id}',function(){
+    return view('/home');
+});
+Route::get('/edit_choice/{big_question_id}',function(){
     return view('/home');
 });
 Route::get('/edit_quiz/{big_question_id}','HomeController@get_questions_to_edit');

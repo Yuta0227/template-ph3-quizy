@@ -14,7 +14,7 @@ class QuizController extends Controller
         $quiz_title=BigQuestion::get_title($big_question_id)->big_question_title;
         $pictures=BigQuestion::with('pictures')->find($big_question_id)->pictures;
         $call_question_list=app()->make('App\Http\Controllers\QuestionListController');
-        $question_lists=$call_question_list->questions($big_question_id);
+        $question_lists=$call_question_list->shuffled_questions($big_question_id);
         $call_correct_answers=app()->make('App\Http\Controllers\QuestionListController');
         $correct_answers_array=$call_correct_answers->correct_answer($big_question_id);
         return view ('quiz.quiz',compact('question_lists','quiz_title','big_question_id','pictures','correct_answers_array'));

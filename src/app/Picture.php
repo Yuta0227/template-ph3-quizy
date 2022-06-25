@@ -11,6 +11,6 @@ class Picture extends Model
         'big_question_id'
     ];
     public static function getPictures($big_question_id){
-        return self::where('big_question_id',$big_question_id)->get();
+        return self::where('big_question_id',$big_question_id)->sortBy('question_id')->get();
     }
 }

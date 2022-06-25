@@ -8,6 +8,7 @@ use App\QuestionList;
 use Illuminate\Foundation\Console\Presets\React;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use QuestionLists;
 
 class HomeController extends Controller
 {
@@ -88,7 +89,19 @@ class HomeController extends Controller
     }
     public function get_questions_to_edit($big_question_id){
         $quiz_title=BigQuestion::find($big_question_id)->title;
-
-        return view('edit_quiz',compact('quiz_title'));
+        $question_list=new QuestionListController();
+        $questions=$question_list->unshuffled_questions($big_question_id);
+        $pictures=Picture::where('big_question_id',$big_question_id)->get();
+        return view('edit_quiz',compact('big_question_id','quiz_title','questions','pictures'));
+    }
+    public function edit_choice(Request $request,$big_question_id){
+        $choice=QuestionList::find($request->id);
+        $choice->update(['choice_name'=>$request->choice_name]);
+        return redirect('/edit_quiz/'.$big_question_id);
+    }
+    public function delete_choice(Request $request,$big_question_id){
+        $choice=QuestionList::find($request->id);
+        $choice->delete();
+        return redirect('/edit_quiz/'.$big_question_id);
     }
 }
