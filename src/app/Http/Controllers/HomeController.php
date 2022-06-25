@@ -46,4 +46,9 @@ class HomeController extends Controller
         $big_question->save();
         return redirect('/home');
     }
+    public function delete_title(Request $request){
+        $big_question=BigQuestion::findOrFail($request->id);
+        $big_question->delete();
+        return redirect('/home');
+    }
 }

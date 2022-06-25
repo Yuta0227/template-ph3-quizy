@@ -37,9 +37,20 @@
         </form>
     @endforeach
     <form action="/add_title" method="POST">
-    @csrf
-    <div>タイトル追加</div>
-    <input name="title" type="text" required>
-    <input type="submit" value="send">
+        @csrf
+        <div>タイトル追加</div>
+        <input name="title" type="text" required>
+        <input type="submit" value="send">
     </form>
+    @foreach($quiz_titles as $quiz_title)
+    <form action="/delete_title" method="POST">
+        @csrf
+        <div>タイトル削除</div>
+        <div style="display:flex;">
+        <div>{{ $quiz_title->title }}</div>
+        <input hidden type="text" name="id" value="{{ $quiz_title->id }}">
+        <input type="submit" value="削除する">
+        </div>
+    </form>
+    @endforeach
 @endsection
