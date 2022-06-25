@@ -15,6 +15,7 @@ class QuestionLists extends Migration
     {
         //質問一覧
         Schema::create('question_lists', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('big_question_id');
             $table->integer('question_id');
             $table->string('choice_name');

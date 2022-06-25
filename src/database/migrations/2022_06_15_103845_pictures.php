@@ -14,6 +14,7 @@ class Pictures extends Migration
     public function up()
     {
         Schema::create('pictures', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('big_question_id');
             $table->integer('question_id');
             $table->string('picture_url');

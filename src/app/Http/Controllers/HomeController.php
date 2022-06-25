@@ -30,8 +30,20 @@ class HomeController extends Controller
         return view('home',compact('user','quiz_titles'));
     }
     public function edit_title(Request $request){
+        $validated=$request->validate([
+            'title'=>'required'
+        ]);
         $big_question=BigQuestion::find($request->id);
         $big_question->update(['title'=>$request->title]);
+        return redirect('/home');
+    }
+    public function add_title(Request $request){
+        $validated=$request->validate([
+            'title'=>'required'
+        ]);
+        $big_question=new BigQuestion();
+        $big_question->fill(['title'=>$request->title]);
+        $big_question->save();
         return redirect('/home');
     }
 }

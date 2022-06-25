@@ -27,13 +27,19 @@
         </div>
     </div>
     @foreach ($quiz_titles as $quiz_title)
-        <form action="/home" method="POST">
+        <form action="/edit_title" method="POST">
             @csrf
             <div>
-                <label>クイズタイトル：</label><input type="text" name="title" value="{{ $quiz_title->title }}">
+                <label>クイズタイトル：</label><input type="text" name="title" value="{{ $quiz_title->title }}" required>
                 <input type="hidden" name="id" value="{{ $quiz_title->id }}">
                 <input type="submit" value="send">
             </div>
         </form>
     @endforeach
+    <form action="/add_title" method="POST">
+    @csrf
+    <div>タイトル追加</div>
+    <input name="title" type="text" required>
+    <input type="submit" value="send">
+    </form>
 @endsection
