@@ -39,7 +39,15 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach
-        </table>
+                @endforeach
+            </table>
+            <form action="/add_choice/{{ $big_question_id }}" method="POST">
+                @csrf
+                <div>正解を変更したい場合は正解の選択肢の内容を編集してください</div>
+                <input hidden name="big_question_id" value="{{ $big_question_id }}">
+                <input hidden name="question_id" value="{{ $question->first()->question_id }}">
+                <input type="text" name="choice_name">
+                <input type="submit" value="選択肢追加">
+            </form>
     @endforeach
 @endsection

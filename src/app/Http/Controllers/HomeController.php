@@ -104,4 +104,10 @@ class HomeController extends Controller
         $choice->delete();
         return redirect('/edit_quiz/'.$big_question_id);
     }
+    public function add_choice(Request $request, $big_question_id){
+        $choice=new QuestionList();
+        $choice->fill(['big_question_id'=>$request->big_question_id,'question_id'=>$request->question_id,'choice_name'=>$request->choice_name,'valid'=>0]);
+        $choice->save();
+        return redirect('/edit_quiz/'.$big_question_id);
+    }
 }
