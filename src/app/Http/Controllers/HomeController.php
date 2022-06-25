@@ -87,6 +87,8 @@ class HomeController extends Controller
         return redirect('/home');
     }
     public function get_questions_to_edit($big_question_id){
-        return view('edit_quiz');
+        $quiz_title=BigQuestion::find($big_question_id)->title;
+
+        return view('edit_quiz',compact('quiz_title'));
     }
 }

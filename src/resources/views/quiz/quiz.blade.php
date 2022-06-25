@@ -17,27 +17,15 @@ quizy
                 <img alt="{{ $correct_answers_array[$loop->iteration - 1]->choice_name }}の画像"
                     src="{{ asset('img/' . $pictures[$loop->iteration - 1]->picture_url) }}">
                 <ul>
-                    <a href="#question{{ $loop->iteration + 1 }}" class="link_style_none">
-                        <li id="answerlist_{{ $loop->iteration }}_1" name="answerlist_{{ $loop->iteration }}"
+                    @foreach($question as $choice)
+                    <a href="#question{{ $loop->parent->iteration + 1 }}" class="link_style_none">
+                        <li id="answerlist_{{ $loop->parent->iteration }}_{{ $loop->iteration }}" name="answerlist_{{ $loop->parent->iteration }}"
                             class="answerlist"
-                            onclick="check({{ $loop->iteration }},1, '{{ $correct_answers_array[$loop->iteration - 1]->choice_name }}')">
-                            {{ $question[0]->choice_name }}
+                            onclick="check({{ $loop->parent->iteration }},{{ $loop->iteration }}, '{{ $correct_answers_array[$loop->parent->iteration - 1]->choice_name }}')">
+                            {{ $choice->choice_name }}
                         </li>
                     </a>
-                    <a href="#question{{ $loop->iteration + 1 }}" class="link_style_none">
-                        <li id="answerlist_{{ $loop->iteration }}_2" name="answerlist_{{ $loop->iteration }}"
-                            class="answerlist"
-                            onclick="check({{ $loop->iteration }},2, '{{ $correct_answers_array[$loop->iteration - 1]->choice_name }}')">
-                            {{ $question[1]->choice_name }}
-                        </li>
-                    </a>
-                    <a href="#question{{ $loop->iteration + 1 }}" class="link_style_none">
-                        <li id="answerlist_{{ $loop->iteration }}_3" name="answerlist_{{ $loop->iteration }}"
-                            class="answerlist"
-                            onclick="check({{ $loop->iteration }},3, '{{ $correct_answers_array[$loop->iteration - 1]->choice_name }}')">
-                            {{ $question[2]->choice_name }}
-                        </li>
-                    </a>
+                    @endforeach
                     <li id="answerbox_{{ $loop->iteration }}" class="answerbox">
                         <span id="answertext_{{ $loop->iteration }}"></span><br>
                         <span>正解は「{{ $correct_answers_array[$loop->iteration - 1]->choice_name }}」です！</span>

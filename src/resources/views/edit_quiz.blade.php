@@ -1,1 +1,2 @@
 hello
+{{ $quiz_title }}
