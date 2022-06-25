@@ -97,4 +97,10 @@
         </div>
         <input type="submit" value="入れ替える">
     </form>
+    <div>クイズ編集画面へのリンク一覧</div>
+    <ul>
+        @foreach($quiz_titles as $quiz_title)
+        <li><a href="/edit_quiz/{{ $quiz_title->id }}">{{ $quiz_title->title }}</a></li>
+        @endforeach
+    </ul>
 @endsection

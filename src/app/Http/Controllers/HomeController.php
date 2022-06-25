@@ -72,7 +72,6 @@ class HomeController extends Controller
         $new_to_big_question=new BigQuestion();
         $new_to_big_question->fill(['id'=>$save_from_big_question->id,'title'=>$save_to_big_question->title]);
         $new_to_big_question->save();
-        // dd($request->to_id.$request->from_id);
         foreach($save_from_questions as $from_question){
             $from_question->update(['big_question_id'=>$request->to_id]);
         }
@@ -86,5 +85,8 @@ class HomeController extends Controller
             $to_picture->update(['big_question_id'=>$request->from_id]);
         }
         return redirect('/home');
+    }
+    public function get_questions_to_edit($big_question_id){
+        return view('edit_quiz');
     }
 }

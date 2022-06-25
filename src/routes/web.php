@@ -27,3 +27,16 @@ Route::post('/edit_title','HomeController@edit_title');
 Route::post('/add_title','HomeController@add_title');
 Route::post('/delete_title','HomeController@delete_title');
 Route::post('/switch_titles','HomeController@switch_titles');
+Route::post('/edit_title',function(){
+    return view('/home');
+});
+Route::post('/add_title',function(){
+    return view('/home');
+});
+Route::post('/delete_title',function(){
+    return view('/home');
+});
+Route::post('/switch_title',function(){
+    return view('/home');
+});
+Route::get('/edit_quiz/{big_question_id}','HomeController@get_questions_to_edit');
