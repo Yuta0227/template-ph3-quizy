@@ -50,4 +50,16 @@
                 <input type="submit" value="選択肢追加">
             </form>
     @endforeach
+    <div>問題作成</div>
+    <form action="/add_question/{{ $big_question_id }}" method="POST">
+        @csrf
+        <input name="question_id" hidden value="{{ count($questions)+1 }}">
+        <div>
+            <label>画像</label><input type="file" name="picture" required>
+        </div>
+        <div>
+            <label>正解</label><input type="text" name="correct" required>
+        </div>
+        <input type="submit" value="問題追加する">
+    </form>
 @endsection

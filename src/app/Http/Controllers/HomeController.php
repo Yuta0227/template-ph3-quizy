@@ -110,4 +110,13 @@ class HomeController extends Controller
         $choice->save();
         return redirect('/edit_quiz/'.$big_question_id);
     }
+    public function add_question(Request $request,$big_question_id){
+        $question=new QuestionList();
+        $question->fill(['big_question_id'=>$big_question_id,'question_id'=>$request->question_id,'choice_name'=>$request->correct,'valid'=>1]);
+        $question->save();
+        $picture=new Picture();
+        $picture->fill(['big_question_id'=>$big_question_id,'question_id'=>$request->question_id,'picture_url'=>$request->correct.'png']);
+        $picture->save();
+        return redirect('/edit_quiz/'.$big_question_id);
+    }
 }
