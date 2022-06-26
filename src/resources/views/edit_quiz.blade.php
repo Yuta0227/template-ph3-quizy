@@ -3,7 +3,13 @@
     {{ $quiz_title }}
     <div>設問一覧</div>
     @foreach ($questions as $question)
-        <img src="{{ asset('img/' . $pictures[$loop->iteration - 1]->picture_url) }}">
+    {{-- {{ dd($question) }} --}}
+        <img src="{{ asset('img/' . $pictures[$loop->iteration-1]->picture_url) }}">
+        {{-- {{ dd($question->first()->question_id) }} --}}
+        <form action="/delete_question/{{ $big_question_id }}/{{ $question->first()->question_id }}" method="POST">
+        @csrf
+        <input type="submit" value="問題削除する">
+        </form>
         <table>
             <tr>
                 <th>選択肢編集</th>

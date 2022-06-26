@@ -17,26 +17,54 @@ class QuestionListController extends Controller
         $question_lists = [];
         $quiz_length = $this->quiz_length($big_question_id);
         $choices = $this->load_choices($big_question_id);
+        $ids=[];
+        $ids=$this->get_ids($choices,$ids);
         for ($question_id = 1; $question_id <= $quiz_length; $question_id++) {
             $before_shuffle = [];
-            $before_shuffle = $choices->filter(function ($choice) use ($question_id) {
-                return $choice->question_id == $question_id;
+            $before_shuffle = $choices->filter(function ($choice) use ($question_id,$ids) {
+                return $choice->question_id == $ids[$question_id-1];
             });
-            $after_shuffle = $before_shuffle->shuffle();
-            array_push($question_lists, $after_shuffle);
+            $exist_count=0;
+            foreach($before_shuffle as $choice){
+                if(isset($choice->id)){
+                    $exist_count++;
+                }
+            }
+            if($exist_count!=0){
+                $after_shuffle = $before_shuffle->shuffle();
+                array_push($question_lists, $after_shuffle);
+            }
         }
         return $question_lists;
+    }
+    public function get_ids($choices,$ids){
+        foreach($choices as $choice){
+            array_push($ids,$choice->question_id);
+        };
+        return $ids=array_values(array_unique($ids));
     }
     public function unshuffled_questions($big_question_id){
         $question_lists = [];
         $quiz_length = $this->quiz_length($big_question_id);
         $choices = $this->load_choices($big_question_id);
+        $ids=[];
+        $ids=$this->get_ids($choices,$ids);
+        // dd($quiz_length);
+        //クイズの長さ文で回してるから数が減るとずれが生じる
         for ($question_id = 1; $question_id <= $quiz_length; $question_id++) {
             $choices_array = [];
-            $choices_array = $choices->filter(function ($choice) use ($question_id) {
-                return $choice->question_id == $question_id;
+            $choices_array = $choices->filter(function ($choice) use ($question_id,$ids) {
+                return $choice->question_id == $ids[$question_id-1];
             });
-            array_push($question_lists, $choices_array);
+            $exist_count=0;
+            foreach($choices_array as $choice){
+                if(isset($choice->id)){
+                    $exist_count++;
+                }
+            }
+            if($exist_count!=0){
+                array_push($question_lists, $choices_array);
+            }
         }
         return $question_lists;
     }

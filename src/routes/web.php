@@ -31,6 +31,7 @@ Route::post('/delete_choice/{big_question_id}','HomeController@delete_choice');
 Route::post('/edit_choice/{big_question_id}','HomeController@edit_choice');
 Route::post('/add_choice/{big_question_id}','HomeController@add_choice');
 Route::post('/add_question/{big_question_id}','HomeController@add_question');
+Route::post('/delete_question/{big_question_id}/{question_id}','HomeController@delete_question');
 Route::get('/edit_title',function(){
     return view('/home');
 });

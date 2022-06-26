@@ -92,6 +92,7 @@ class HomeController extends Controller
         $question_list=new QuestionListController();
         $questions=$question_list->unshuffled_questions($big_question_id);
         $pictures=Picture::where('big_question_id',$big_question_id)->get();
+        // dd($questions);
         return view('edit_quiz',compact('big_question_id','quiz_title','questions','pictures'));
     }
     public function edit_choice(Request $request,$big_question_id){
@@ -117,6 +118,13 @@ class HomeController extends Controller
         $picture=new Picture();
         $picture->fill(['big_question_id'=>$big_question_id,'question_id'=>$request->question_id,'picture_url'=>$request->correct.'png']);
         $picture->save();
+        return redirect('/edit_quiz/'.$big_question_id);
+    }
+    public function delete_question($big_question_id,$question_id){
+        $question=QuestionList::where('big_question_id',$big_question_id)->where('question_id',$question_id);
+        $question->delete();
+        $picture=Picture::where('big_question_id',$big_question_id)->where('question_id',$question_id);
+        $picture->delete();
         return redirect('/edit_quiz/'.$big_question_id);
     }
 }
