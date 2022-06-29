@@ -12,14 +12,14 @@ class PicturesSeeder extends Seeder
      */
     public function run()
     {
-        $data=array(
-            array('big_question_id'=>1,'question_id'=>1,'picture_url'=>'たかなわ.png'),
-            array('big_question_id'=>1,'question_id'=>2,'picture_url'=>'かめいど.png'),
-            array('big_question_id'=>1,'question_id'=>3,'picture_url'=>'こうじまち.png'),
-            array('big_question_id'=>2,'question_id'=>1,'picture_url'=>'むかいなだ.png'),
-            array('big_question_id'=>2,'question_id'=>2,'picture_url'=>'おしらべ.png'),
-            array('big_question_id'=>2,'question_id'=>3,'picture_url'=>'ぎんざん.png'),
-        );
+        $data=[
+            ['big_question_id'=>1,'question_id'=>1,'picture_url'=>'たかなわ.png'],
+            ['big_question_id'=>1,'question_id'=>2,'picture_url'=>'かめいど.png'],
+            ['big_question_id'=>1,'question_id'=>3,'picture_url'=>'こうじまち.png'],
+            ['big_question_id'=>2,'question_id'=>1,'picture_url'=>'むかいなだ.png'],
+            ['big_question_id'=>2,'question_id'=>2,'picture_url'=>'おしらべ.png'],
+            ['big_question_id'=>2,'question_id'=>3,'picture_url'=>'ぎんざん.png'],
+        ];
         DB::table('pictures')->insert($data);
     }
 }
