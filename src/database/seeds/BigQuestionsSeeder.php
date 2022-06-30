@@ -12,10 +12,10 @@ class BigQuestionsSeeder extends Seeder
      */
     public function run()
     {
-        $data=array(
-            array('big_question_title'=>'東京の難読地名クイズ'),
-            array('big_question_title'=>'広島県の難読地名クイズ')
-        );
-        DB::table('big_questions')->insert($data);
+        $data=[
+            ['prefecture_id'=>1,'prefecture_title'=>'東京の難読地名クイズ'],
+            ['prefecture_id'=>2,'prefecture_title'=>'広島県の難読地名クイズ']
+        ];
+        DB::table('prefectures')->insert($data);
     }
 }

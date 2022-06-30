@@ -14,9 +14,11 @@ class Pictures extends Migration
     public function up()
     {
         Schema::create('pictures', function (Blueprint $table) {
-            $table->integer('big_question_id');
+            $table->integer('prefecture_id');
             $table->integer('question_id');
             $table->string('picture_url');
+            $table->primary('question_id');
+            $table->foreign('prefecture_id')->references('prefecture_id')->on('prefectures')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
     }
 

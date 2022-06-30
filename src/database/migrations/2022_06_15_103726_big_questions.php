@@ -14,9 +14,10 @@ class BigQuestions extends Migration
     public function up()
     {
         //クイズのタイトル
-        Schema::create('big_questions', function (Blueprint $table) {
-            $table->increments('big_question_id');
-            $table->string('big_question_title');
+        Schema::create('prefectures', function (Blueprint $table) {
+            $table->integer('prefecture_id');
+            $table->string('prefecture_title');
+            $table->primary('prefecture_id');
         });
     }
 
@@ -27,6 +28,6 @@ class BigQuestions extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('big_questions');
+        Schema::dropIfExists('prefectures');
     }
 }

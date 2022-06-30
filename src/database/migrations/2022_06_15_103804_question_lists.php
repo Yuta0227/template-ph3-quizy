@@ -15,10 +15,14 @@ class QuestionLists extends Migration
     {
         //質問一覧
         Schema::create('question_lists', function (Blueprint $table) {
-            $table->integer('big_question_id');
+            $table->engine='InnoDB';
+            $table->integer('prefecture_id');
             $table->integer('question_id');
             $table->string('choice_name');
             $table->boolean('valid');
+            $table->index('question_id');
+            $table->foreign('question_id')->references('question_id')->on('pictures')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('prefecture_id')->references('prefecture_id')->on('prefectures')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
     }
 

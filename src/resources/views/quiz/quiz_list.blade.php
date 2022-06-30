@@ -1,3 +1,3 @@
 @foreach($quiz_titles as $quiz_title)
-<a href="{{ route('quiz.quiz',['big_question_id'=>$loop->iteration]) }}">{{ $quiz_title->big_question_title }}</a><br>
+<a href="{{ route('quiz.quiz',['prefecture_id'=>$loop->iteration]) }}">{{ $quiz_title->prefecture_title }}</a><br>
 @endforeach
