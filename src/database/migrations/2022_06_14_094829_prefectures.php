@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class BigQuestions extends Migration
+class Prefectures extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class BigQuestions extends Migration
      */
     public function up()
     {
-        //クイズのタイトル
-        Schema::create('big_questions', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title');
+        Schema::create('prefectures', function (Blueprint $table) {
+            $table->integer('prefecture_id');
+            $table->string('prefecture_title');
+            $table->primary('prefecture_id');
         });
     }
 
@@ -27,6 +27,7 @@ class BigQuestions extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('big_questions');
+        Schema::dropIfExists('prefectures');
+
     }
 }

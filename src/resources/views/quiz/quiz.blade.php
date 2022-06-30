@@ -14,8 +14,8 @@ quizy
         @foreach ($question_lists as $question)
             <div class="quiz" id="question{{ $loop->iteration }}">
                 <h1>{{ $loop->iteration }}. この地名はなんて読む？</h1>
-                <img alt="{{ $correct_answers_array[$loop->iteration - 1]->choice_name }}の画像"
-                    src="{{ asset('img/' . $pictures[$loop->iteration - 1]->picture_url) }}">
+                <img alt="{{ $correct_answers_array[$loop->index]->choice_name }}の画像"
+                    src="{{ asset('img/' . $pictures[$loop->index]->picture_url) }}">
                 <ul>
                     <a href="#question{{ $loop->iteration + 1 }}" class="link_style_none">
                         <li id="answerlist_{{ $loop->iteration }}_1" name="answerlist_{{ $loop->iteration }}"

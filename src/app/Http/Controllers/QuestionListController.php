@@ -2,39 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\BigQuestion;
+use App\Picture;
+use App\Prefecture;
 use Illuminate\Http\Request;
 use App\QuestionList;
 
+
 class QuestionListController extends Controller
 {
-    public function load_choices($big_question_id)
+    public function load_choices($prefecture_id)
     {
-        return BigQuestion::with('choices')->find($big_question_id)->choices;
+        return Prefecture::with('choices')->find($prefecture_id)->choices;
     }
-    public function questions($big_question_id)
+    public function questions($prefecture_id)
     {
         $question_lists = [];
-        $quiz_length = $this->quiz_length($big_question_id);
-        $choices = $this->load_choices($big_question_id);
+        $quiz_length = $this->quiz_length($prefecture_id);
+        $pictures=Picture::where('prefecture_id',$prefecture_id)->get();
+        $choices = $this->load_choices($prefecture_id);
         for ($question_id = 1; $question_id <= $quiz_length; $question_id++) {
             $before_shuffle = [];
-            $before_shuffle = $choices->filter(function ($choice) use ($question_id) {
-                return $choice->question_id == $question_id;
+            $before_shuffle = $choices->filter(function ($choice) use ($pictures,$question_id) {
+                return $choice->question_id == $pictures[$question_id-1]->question_id;
             });
             $after_shuffle = $before_shuffle->shuffle();
             array_push($question_lists, $after_shuffle);
         }
         return $question_lists;
     }
-    function quiz_length($big_question_id)
+    function quiz_length($prefecture_id)
     {
-        return count($this->load_choices($big_question_id)->unique('question_id'));
+        return count($this->load_choices($prefecture_id)->unique('question_id'));
     }
-    public function correct_answer($big_question_id)
+    public function correct_answer($prefecture_id)
     {
         $correct_answer_array = [];
-        $correct_answer = $this->load_choices($big_question_id)
+        $correct_answer = $this->load_choices($prefecture_id)
             ->filter(function ($choice) {
                 return $choice->valid == true;
             })->all();
