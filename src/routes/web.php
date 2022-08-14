@@ -17,6 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('quiz_list', 'QuizController@quiz_list')->name('quiz.question_lists');
-Route::get('quiz/{prefecture_id}', 'QuizController@question_lists')->name('quiz.quiz');
-
+Route::get('/quiz_list', 'PrefectureController@all_titles')->name('quiz.question_lists');
+Route::get('/quiz/{prefecture_id}', 'QuizController@question_lists')->name('quiz.quiz');

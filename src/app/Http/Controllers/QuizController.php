@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Prefecture;
+use App\Picture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -9,22 +11,17 @@ class QuizController extends Controller
 {
     public function question_lists($prefecture_id)
     {
-        $quiz_titles=DB::table('prefectures')->where('prefecture_id',$prefecture_id)->first();
-        $pictures=DB::table('pictures')->where('prefecture_id',$prefecture_id)->get();
-        $quiz_length=count($pictures);
-        $question_lists=[];
-        for($question_id=1;$question_id<=$quiz_length;$question_id++){
-            $question_lists_data=DB::table('question_lists')->where('prefecture_id',$prefecture_id)->where('question_id',$pictures[$question_id-1]->question_id)->get();
-            for($choice_id=0;$choice_id<=count($question_lists_data)-1;$choice_id++){
-                $question_lists[$question_id][]=$question_lists_data[$choice_id];
-            }
-            shuffle($question_lists[$question_id]);
-        }
-        $correct_answers=DB::table("question_lists")->where('prefecture_id',$prefecture_id)->where('valid',1)->get();
-        return view ('quiz.quiz',compact('question_lists','prefecture_id','quiz_titles','pictures','correct_answers'));
+        $quiz_title = Prefecture::get_title($prefecture_id)->prefecture_title;
+        $pictures = Prefecture::with('pictures')->find($prefecture_id)->pictures;
+        $call_question_list = app()->make('App\Http\Controllers\QuestionListController');
+        $question_lists = $call_question_list->questions($prefecture_id);
+        $call_correct_answers = app()->make('App\Http\Controllers\QuestionListController');
+        $correct_answers_array = $call_correct_answers->correct_answer($prefecture_id);
+        return view('quiz.quiz', compact('question_lists', 'quiz_title', 'prefecture_id', 'pictures', 'correct_answers_array'));
     }
-    public function quiz_list(){
-        $quiz_titles=DB::table('prefectures')->get();
-        return view('quiz.quiz_list',compact('quiz_titles'));
+    public function quiz_list()
+    {
+        $quiz_titles = DB::table('prefectures')->get();
+        return view('quiz.quiz_list', compact('quiz_titles'));
     }
 }

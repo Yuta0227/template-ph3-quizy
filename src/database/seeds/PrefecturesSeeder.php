@@ -3,7 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class BigQuestionsSeeder extends Seeder
+
+class PrefecturesSeeder extends Seeder
 {
     /**
      * Run the database seeds.

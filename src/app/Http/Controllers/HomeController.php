@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\BigQuestion;
+use App\Prefecture;
 use App\Picture;
 use App\QuestionList;
 use Illuminate\Foundation\Console\Presets\React;
@@ -30,14 +30,14 @@ class HomeController extends Controller
     public function index()
     {
         $user=Auth::user();
-        $quiz_titles=BigQuestion::all();
+        $quiz_titles=Prefecture::all();
         return view('home',compact('user','quiz_titles'));
     }
     public function edit_title(Request $request){
         $validated=$request->validate([
             'title'=>'required'
         ]);
-        $prefecture=BigQuestion::find($request->id);
+        $prefecture=Prefecture::find($request->id);
         $prefecture->update(['title'=>$request->title]);
         return redirect('/home');
     }
@@ -45,13 +45,13 @@ class HomeController extends Controller
         $validated=$request->validate([
             'title'=>'required'
         ]);
-        $prefecture=new BigQuestion();
+        $prefecture=new Prefecture();
         $prefecture->fill(['title'=>$request->title]);
         $prefecture->save();
         return redirect('/home');
     }
     public function delete_title(Request $request){
-        $prefecture=BigQuestion::find($request->id);
+        $prefecture=Prefecture::find($request->id);
         $prefecture->delete();
         return redirect('/home');
     }
@@ -59,18 +59,18 @@ class HomeController extends Controller
         if($request->from_id==$request->to_id){
             return redirect('/home');
         }
-        $save_from_prefecture=BigQuestion::find($request->from_id);
+        $save_from_prefecture=Prefecture::find($request->from_id);
         $save_from_questions=QuestionList::where('prefecture_id',$request->from_id)->get();
         $save_from_pictures=Picture::where('prefecture_id',$request->from_id)->get();
-        $save_to_prefecture=BigQuestion::find($request->to_id);
+        $save_to_prefecture=Prefecture::find($request->to_id);
         $save_to_questions=QuestionList::where('prefecture_id',$request->to_id)->get();
         $save_to_pictures=Picture::where('prefecture_id',$request->to_id)->get();
         $save_from_prefecture->delete();
         $save_to_prefecture->delete();
-        $new_from_prefecture=new BigQuestion();
+        $new_from_prefecture=new Prefecture();
         $new_from_prefecture->fill(['id'=>$save_to_prefecture->id,'title'=>$save_from_prefecture->title]);
         $new_from_prefecture->save();
-        $new_to_prefecture=new BigQuestion();
+        $new_to_prefecture=new Prefecture();
         $new_to_prefecture->fill(['id'=>$save_from_prefecture->id,'title'=>$save_to_prefecture->title]);
         $new_to_prefecture->save();
         foreach($save_from_questions as $from_question){
@@ -88,7 +88,7 @@ class HomeController extends Controller
         return redirect('/home');
     }
     public function get_questions_to_edit($prefecture_id){
-        $quiz_title=BigQuestion::find($prefecture_id)->title;
+        $quiz_title=Prefecture::find($prefecture_id)->title;
         $question_list=new QuestionListController();
         $questions=$question_list->unshuffled_questions($prefecture_id);
         $pictures=Picture::where('prefecture_id',$prefecture_id)->get();
