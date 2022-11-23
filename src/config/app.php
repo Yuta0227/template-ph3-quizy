@@ -54,8 +54,7 @@ return [
     |
     */
 
-    // 'url' => 'https://yuta0227-improved-space-carnival-jwr9pg4979jc9g4-80.preview.app.github.dev/',
-    'url' => env('APP_URL','localhost'),
+    'url' => env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL'),
 
