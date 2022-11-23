@@ -2,12 +2,12 @@ version: "3"
 
 services:
   db:
-    build:
-      context: ./db
-    ports:
-      - 3306:3306
+    image: mysql:8.0
     volumes:
       - ./db/var/lib/mysql:/var/lib/mysql
+      - ./db/etc/my.conf:/etc/mysql/conf.d/my.conf
+    ports:
+      - 3306:3306
     environment:
       - MYSQL_DATABASE=laravel
       - MYSQL_USER=laravel
@@ -20,6 +20,8 @@ services:
     volumes:
       - ../src:/work/backend
     depends_on: ["db"]
+    ports:
+      - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
   web:
     build:
       context: ./web

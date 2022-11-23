@@ -1,5 +1,4 @@
-FROM php:7.4-fpm-buster
-LABEL maintainer="ucan-lab <yes@u-can.pro>"
+FROM php:8.1-fpm-buster
 SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
 
 # timezone environment
@@ -12,7 +11,7 @@ ENV TZ=UTC \
   COMPOSER_ALLOW_SUPERUSER=1 \
   COMPOSER_HOME=/composer
 
-COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.3 /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update && \
   apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales && \
@@ -24,6 +23,14 @@ RUN apt-get update && \
   docker-php-ext-install intl pdo_mysql zip bcmath && \
   composer config -g process-timeout 3600 && \
   composer config -g repos.packagist composer https://packagist.org
+
+RUN apt-get -y update && \
+  apt-get install -y \
+  curl \
+  gnupg && \
+  curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
+  apt-get install -y nodejs && \
+  npm install npm@latest -g
 
 COPY ./usr/local/etc/php/php.ini /usr/local/etc/php/php.ini
 
